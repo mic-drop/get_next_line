@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-char    *get_line(char *buffer, int start, int end)
+char    *my_get_line(char *buffer, int start, int end)
 {
     char    *line;
     int i;
@@ -19,4 +19,14 @@ char    *get_line(char *buffer, int start, int end)
         line[i++] = '\n';
     line[i] = '\0';
     return (line);
+}
+
+char    *reset_buffer(char *buffer)
+{
+    int i;
+    
+    i = 0;
+    while(buffer[i])
+        buffer[i++] = '\0';
+    return (buffer);
 }
