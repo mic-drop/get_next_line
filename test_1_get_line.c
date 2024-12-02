@@ -38,15 +38,20 @@ void test_nothing_to_read(void)
 
 void test_line_no_nl(void)
 {
-    int fd = open("line_no_nl.txt", O_RDONLY);
+    int fd = open("41_no_nl", O_RDONLY);
     char *line = get_next_line(fd);
-    printf("Test\t: |a|\n");
+    printf("Test\t: |0|\n");
     printf("Result\t: |%s|\n", line);
     free(line);
 
-   line = get_next_line(open("41_no_nl", O_RDONLY));
+   line = get_next_line(fd);
 
-    printf("Test\t: |0|\n");
+    printf("Test\t: |1|\n");
+    printf("Result\t: |%s|\n", line);
+    free(line);
+   line = get_next_line(fd);
+
+    printf("Test\t: |2|\n");
     printf("Result\t: |%s|\n", line);
     free(line);
 }
@@ -58,6 +63,7 @@ void test_reach_end_of_file(void)
 	printf("Test\t : |a|\n");
 	printf("Result\t : |%s|\n", line);
 	free(line);
+    printf("\n");
 	line = get_next_line(fd);
 	printf("Test\t : |\n|\n");
 	printf("Result\t : |%s|\n", line);
@@ -66,10 +72,10 @@ void test_reach_end_of_file(void)
 
 int main(void)
 {
-    test_get_line();
-    test_end_file_no_nl();
-    test_nothing_to_read();
+    // test_get_line();
+    // test_end_file_no_nl();
+    // test_nothing_to_read();
     test_line_no_nl();
-	test_reach_end_of_file();
+	// test_reach_end_of_file();
     return (0);
 }

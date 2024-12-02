@@ -51,24 +51,43 @@ void test_line_no_nl(void)
     free(line);
 }
 
+// Please note that the returned line should include the terminating \n character,
+// except if the end of file was reached and does not end with a \n character.
+
+//End of file line should return \n character if it ends with it
 void test_reach_end_of_file(void)
 {
 	int	fd = open("a.txt", O_RDONLY);
     char	*line = get_next_line(fd);
-	printf("Line should be |a|: |%s|", line);
+	printf("Line should be: |a\n|\n");
+	printf("Line should be: |%s\n|\n", line);
 	free(line);
 	line = get_next_line(fd);
-	printf("Line should be (null)\n");
-	printf("Line: |%s|", line);
+	printf("Line should be |(null)|\n");
+	printf("Line: |%s|\n", line);
 	free(line);
+}
+
+
+void test_hugo(void)
+{
+    int fd = open("a.txt", O_RDWR);
+   printf("%s\n", get_next_line(fd));
+   printf("%s\n", get_next_line(fd));
+   close(fd);
+
+    fd = open("camoes.txt", O_RDWR);
+   printf("%s\n", get_next_line(fd));
+   printf("%s\n", get_next_line(fd));
 }
 
 int main(void)
 {
-    test_get_line();
+/*     test_get_line();
     test_end_file_no_nl();
     test_nothing_to_read();
     test_line_no_nl();
-	test_reach_end_of_file();
+	test_reach_end_of_file(); */
+    test_hugo();
     return (0);
 }
