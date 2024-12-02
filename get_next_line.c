@@ -16,10 +16,6 @@ char	*get_next_line(int fd)
 	char *line;
 	static int current_fd;
 
-    printf("fd: %d\n", fd);
-	printf("curret_fd: %d\n", current_fd);
-	printf("start: %d\n", start);
-	printf("bytes_read: %d\n", bytes_read);
 	if (current_fd == 0 || fd != current_fd)
 	{
 		current_fd = fd;
@@ -27,11 +23,7 @@ char	*get_next_line(int fd)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
         start = 0;
 	}
-/*     printf("after read fd: %d\n", fd);
-	printf("after read curret_fd: %d\n", current_fd);
-	printf("after read start: %d\n", start);
-	printf("after read bytes_read: %d\n", bytes_read); */
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (start >= bytes_read)
 	{
