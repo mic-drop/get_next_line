@@ -30,7 +30,8 @@ char    *reset_buffer(char *buffer)
     
     i = 0;
     while(buffer[i])
-        buffer[i++] = '\0';
+        buffer[i++] = 0;
+    buffer[i] = '\0';
     return (buffer);
 }
 
@@ -39,10 +40,14 @@ char    *ft_shift_reset(char *buffer, int nl_index, int buff_size)
     int i;
 
     i = 0;
-    while (nl_index < buff_size - nl_index)
-        buffer[i++] = buffer[nl_index++ + 1];
-    while (nl_index < buff_size)
-        buffer[nl_index++] = '\0';
+    while (i < nl_index)
+    {
+        buffer[i] = buffer[nl_index + i];
+        i++;
+    }
+    while (i < buff_size)
+        buffer[i++] = 0;
+    buffer[i] = '\0';
     return (buffer);
 }
 
@@ -108,7 +113,7 @@ char *ft_get_line(char * str)
     line = malloc(sizeof(char) * end + 1);
     if(!line)
         return (NULL);
-    while(i <= end)
+    while(i < end)
     {
         line[i] = str[i];
         i++;
