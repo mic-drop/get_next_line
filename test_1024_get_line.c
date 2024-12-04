@@ -17,7 +17,17 @@ void test_get_line(void)
     free(line);
     
     line = get_next_line(fd);
-    printf("Test\t: |E para mais me espantar,\n|\n");
+    printf("Test\t: |E para mais me espantar\n|\n");
+    printf("Result\t: |%s|\n", line);
+    free(line);
+    
+    line = get_next_line(fd);
+    printf("Test\t: |Os maus vi sempre nadar\n|\n");
+    printf("Result\t: |%s|\n", line);
+    free(line);
+    
+    line = get_next_line(fd);
+    printf("Test\t: |Em mar de contentamentos.|\n");
     printf("Result\t: |%s|\n", line);
     free(line);
 }
