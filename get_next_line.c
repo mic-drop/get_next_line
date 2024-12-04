@@ -28,6 +28,8 @@ char	*get_next_line(int fd)
 			str = ft_strjoin(str, buffer);
 			reset_buffer(buffer);
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
+			if(bytes_read == 0)
+				return (str);
 		}
 		if(str)
 			str = ft_strjoin(str, "\n");
