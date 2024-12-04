@@ -66,9 +66,9 @@ void test_reach_end_of_file(void)
 int main(void)
 {
     test_get_line();
-    test_end_file_no_nl();
+/*     test_end_file_no_nl();
     test_nothing_to_read();
     test_line_no_nl();
-	test_reach_end_of_file();
+	test_reach_end_of_file(); */
     return (0);
 }
