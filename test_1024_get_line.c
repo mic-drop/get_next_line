@@ -15,6 +15,11 @@ void test_get_line(void)
     printf("Test\t: |No mundo graves tormentos;\n|\n");
     printf("Result\t: |%s|\n", line);
     free(line);
+    
+    line = get_next_line(fd);
+    printf("Test\t: |E para mais me espantar,\n|\n");
+    printf("Result\t: |%s|\n", line);
+    free(line);
 }
 // If the end of file was reached and does not end with a \n character, return line without \n.
 void test_end_file_no_nl(void)
