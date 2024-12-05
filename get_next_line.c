@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:22:09 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/05 16:00:08 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:35:00 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_next_line(int fd)
 		if (buffer[0] == '\0')
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (clean_exit(str));
+			break ;
 		str = ft_strjoin(str, buffer);
 		if (!str)
 			return (NULL);
@@ -42,7 +42,7 @@ char	*get_next_line(int fd)
 			return (ft_reset__and_return(buffer, str, BUFFER_SIZE));
 		reset_buffer(buffer);
 	}
-	if (str && *str)
+	if (str && *str && bytes_read == 0)
 		return (str);
 	free(str);
 	return (NULL);

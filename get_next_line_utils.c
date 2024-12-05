@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/05 16:19:54 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:34:22 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,4 @@ char	*ft_reset__and_return(char *buffer, char *str, int buff_size)
 	str[i++] = '\n';
 	str[i] = '\0';
 	return (str);
-}
-
-char	*clean_exit(char *str)
-{
-	if (str)
-		free(str);
-	return (NULL);
 }
