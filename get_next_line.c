@@ -21,6 +21,7 @@ char	*get_next_line(int fd)
 	{
 		if(buffer[0] == '\0')
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
+			// buffer[bytes_read] = '\0';
  		if(bytes_read < 0) // If error
 		{
 			if(str)
@@ -28,18 +29,23 @@ char	*get_next_line(int fd)
 			return (NULL);
 		}
 		// printf("This is buffer[bytes_read]: |%c|\n", buffer[bytes_read]);
-		buffer[bytes_read] = '\0';
+		// printf("This is buffer before join: |%s|\n", buffer);
 		str = ft_strjoin(str, buffer);
 		// printf("This is str after join: |%s|\n", str);
 		if(!str)
 			return (NULL);
 		if(ft_check_nl(buffer) != -1)
 		{
+
+			// printf("This is buffer before reset: |%s|\n", buffer);
+			// printf("This is check nl index: %d\n", ft_check_nl(buffer));
 			ft_shift_reset(buffer, ft_check_nl(buffer) + 1, BUFFER_SIZE);
+			// printf("This is buffer after reset: |%s|\n", buffer);
 			str = ft_get_line(str);
 			// printf("This is str before return: |%s|\n", str);
 			return (str);
 		}
+		// printf("###This is buffer before reset: |%s|\n", buffer);
 		reset_buffer(buffer);
 	}
 	if(str && *str)

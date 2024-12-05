@@ -40,13 +40,15 @@ char    *ft_shift_reset(char *buffer, int nl_index, int buff_size)
     int i;
 
     i = 0;
-    while (i < nl_index)
+    while (buffer[i] != '\0')
     {
         buffer[i] = buffer[nl_index + i];
         i++;
     }
+	// printf("This is buffer part one reset: |%s|\n", buffer);
     while (i < buff_size)
         buffer[i++] = 0;
+	// printf("This is buffer part two reset: |%s|\n", buffer);
     buffer[i] = '\0';
     return (buffer);
 }
