@@ -1,28 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
+/*   Updated: 2024/12/05 16:15:25 by mserra-p         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-char	*my_get_line(char *buffer, int start, int end)
-{
-	char	*line;
-	int		i;
-
-	line = malloc(sizeof(char) * (end - start + 2));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (start < end)
-	{
-		line[i] = buffer[start];
-		i++;
-		start++;
-	}
-	if (buffer[start] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
-}
 
 char	*reset_buffer(char *buffer)
 {
@@ -30,22 +21,6 @@ char	*reset_buffer(char *buffer)
 
 	i = 0;
 	while (buffer[i])
-		buffer[i++] = 0;
-	buffer[i] = '\0';
-	return (buffer);
-}
-
-char	*ft_shift_reset(char *buffer, int nl_index, int buff_size)
-{
-	int	i;
-
-	i = 0;
-	while (buffer[i] != '\0')
-	{
-		buffer[i] = buffer[nl_index + i];
-		i++;
-	}
-	while (i < buff_size)
 		buffer[i++] = 0;
 	buffer[i] = '\0';
 	return (buffer);
@@ -62,6 +37,7 @@ int	ft_strlen(const char *src)
 		size++;
 	return (size);
 }
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		final_size;
@@ -117,14 +93,27 @@ char	*ft_get_line(char *str)
 
 char	*ft_reset__and_return(char *buffer, char *str, int buff_size)
 {
-	ft_shift_reset(buffer, ft_check_nl(buffer) + 1, buff_size);
+	int	i;
+	int nl_index;
+
+	i = 0;
+	nl_index = ft_check_nl(buffer) + 1;
+	while (buffer[i] != '\0')
+	{
+		buffer[i] = buffer[nl_index + i];
+		i++;
+	}
+	while (i < buff_size)
+		buffer[i++] = 0;
+	buffer[i] = '\0';
+	
 	str = ft_get_line(str);
 	return (str);
 }
 
-char *clean_exit(char *str)
+char	*clean_exit(char *str)
 {
-    if(str)
-        free(str);
-    return (NULL);
+	if (str)
+		free(str);
+	return (NULL);
 }
