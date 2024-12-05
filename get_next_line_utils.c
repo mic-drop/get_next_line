@@ -121,3 +121,10 @@ char	*ft_reset__and_return(char *buffer, char *str, int buff_size)
 	str = ft_get_line(str);
 	return (str);
 }
+
+char *clean_exit(char *str)
+{
+    if(str)
+        free(str);
+    return (NULL);
+}

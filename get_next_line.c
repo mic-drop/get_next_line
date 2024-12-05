@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:22:09 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/05 15:32:20 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:42:53 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,7 @@ char	*get_next_line(int fd)
 		if (buffer[0] == '\0')
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
-		{
-			if (str)
-				free(str);
-			return (NULL);
-		}
+			return (clean_exit(str));
 		str = ft_strjoin(str, buffer);
 		if (!str)
 			return (NULL);
