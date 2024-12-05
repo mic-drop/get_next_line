@@ -108,19 +108,12 @@ char *ft_get_line(char * str)
 {
     int i;
     int end;
-    char *line;
 
     i = 0;
     end = ft_check_nl(str);
-    line = malloc(sizeof(char) * end + 2);
-    if(!line)
-        return (NULL);
     while(i < end)
-    {
-        line[i] = str[i];
         i++;
-    }
-    line[i++] = '\n';
-    line[i] = '\0';
-    return (line);
+    str[i++] = '\n';
+    str[i] = '\0';
+    return (str);
 }
