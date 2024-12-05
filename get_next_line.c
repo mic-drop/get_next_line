@@ -27,14 +27,17 @@ char	*get_next_line(int fd)
 				free(str);
 			return (NULL);
 		}
+		// printf("This is buffer[bytes_read]: |%c|\n", buffer[bytes_read]);
 		buffer[bytes_read] = '\0';
 		str = ft_strjoin(str, buffer);
+		// printf("This is str after join: |%s|\n", str);
 		if(!str)
 			return (NULL);
 		if(ft_check_nl(buffer) != -1)
 		{
 			ft_shift_reset(buffer, ft_check_nl(buffer) + 1, BUFFER_SIZE);
 			str = ft_get_line(str);
+			// printf("This is str before return: |%s|\n", str);
 			return (str);
 		}
 		reset_buffer(buffer);
