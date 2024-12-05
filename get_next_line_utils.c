@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/05 16:15:25 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:19:54 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,11 @@ int	ft_check_nl(char *line)
 	return (i);
 }
 
-char	*ft_get_line(char *str)
-{
-	int	i;
-	int	end;
-
-	i = 0;
-	end = ft_check_nl(str);
-	while (i < end)
-		i++;
-	str[i++] = '\n';
-	str[i] = '\0';
-	return (str);
-}
-
 char	*ft_reset__and_return(char *buffer, char *str, int buff_size)
 {
 	int	i;
-	int nl_index;
+	int	nl_index;
+	int	end;
 
 	i = 0;
 	nl_index = ft_check_nl(buffer) + 1;
@@ -106,8 +93,12 @@ char	*ft_reset__and_return(char *buffer, char *str, int buff_size)
 	while (i < buff_size)
 		buffer[i++] = 0;
 	buffer[i] = '\0';
-	
-	str = ft_get_line(str);
+	i = 0;
+	end = ft_check_nl(str);
+	while (i < end)
+		i++;
+	str[i++] = '\n';
+	str[i] = '\0';
 	return (str);
 }
 
