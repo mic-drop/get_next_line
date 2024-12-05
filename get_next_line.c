@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 15:22:09 by mserra-p          #+#    #+#             */
+/*   Updated: 2024/12/05 15:32:20 by mserra-p         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,37 +21,32 @@
 
 char	*get_next_line(int fd)
 {
-	static char buffer[BUFFER_SIZE];
-	char *str;
-	int bytes_read;
+	static char	buffer[BUFFER_SIZE];
+	char		*str;
+	int			bytes_read;
 
-	if(fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	str = NULL;
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
-		if(buffer[0] == '\0')
+		if (buffer[0] == '\0')
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
- 		if(bytes_read < 0) 
+		if (bytes_read < 0)
 		{
-			if(str)
+			if (str)
 				free(str);
 			return (NULL);
 		}
 		str = ft_strjoin(str, buffer);
-		if(!str)
+		if (!str)
 			return (NULL);
-		if(ft_check_nl(buffer) != -1)
-		{
-
-			ft_shift_reset(buffer, ft_check_nl(buffer) + 1, BUFFER_SIZE);
-			str = ft_get_line(str);
-			return (str);
-		}
+		if (ft_check_nl(buffer) != -1)
+			return (ft_reset__and_return(buffer, str, BUFFER_SIZE));
 		reset_buffer(buffer);
 	}
-	if(str && *str)
+	if (str && *str)
 		return (str);
 	free(str);
 	return (NULL);

@@ -65,7 +65,7 @@ int	ft_strlen(const char *src)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		final_size;
-	int	i;
+	int		i;
 	char	*new_str;
 
 	i = 0;
@@ -103,8 +103,8 @@ int	ft_check_nl(char *line)
 
 char	*ft_get_line(char *str)
 {
-	int i;
-	int end;
+	int	i;
+	int	end;
 
 	i = 0;
 	end = ft_check_nl(str);
@@ -112,5 +112,12 @@ char	*ft_get_line(char *str)
 		i++;
 	str[i++] = '\n';
 	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_reset__and_return(char *buffer, char *str, int buff_size)
+{
+	ft_shift_reset(buffer, ft_check_nl(buffer) + 1, buff_size);
+	str = ft_get_line(str);
 	return (str);
 }
