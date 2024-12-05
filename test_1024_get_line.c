@@ -78,12 +78,26 @@ void test_reach_end_of_file(void)
 	free(line);
 }
 
+void multiple_fd(void)
+{
+
+	int	fd = open("camoes.txt", O_RDONLY);
+    char	*line = get_next_line(fd);
+	printf("Test\t: |%s|\n", line);
+    close(fd);
+    fd = open("end_file.txt", O_RDONLY);
+    line = get_next_line(fd);
+	printf("Test\t: |%s|\n", line);
+}
+
+
 int main(void)
 {
-    test_get_line();
+    // test_get_line();
 /*     test_end_file_no_nl();
     test_nothing_to_read();
     test_line_no_nl();
 	test_reach_end_of_file(); */
+    multiple_fd();
     return (0);
 }
