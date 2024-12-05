@@ -6,14 +6,11 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/05 16:34:22 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:57:04 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "get_next_line.h" 
 
 char	*reset_buffer(char *buffer)
 {

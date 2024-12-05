@@ -6,18 +6,11 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:22:09 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/05 16:35:00 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:57:49 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
-#endif
 
 char	*get_next_line(int fd)
 {
