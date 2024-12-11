@@ -89,15 +89,22 @@ void multiple_fd(void)
     line = get_next_line(fd);
 	printf("Test\t: |%s|\n", line);
 }
+void    test_non_existing_fd(void)
+{
+    char	*line = get_next_line(74);
+	printf("Test\t: |%s|\n", line);
+    free(line);
 
+}
 
 int main(void)
 {
     // test_get_line();
-/*     test_end_file_no_nl();
-    test_nothing_to_read();
-    test_line_no_nl();
-	test_reach_end_of_file(); */
-    multiple_fd();
+    // test_end_file_no_nl();
+    // test_nothing_to_read();
+    // test_line_no_nl();
+	// test_reach_end_of_file();
+    // multiple_fd();
+    test_non_existing_fd();
     return (0);
 }
