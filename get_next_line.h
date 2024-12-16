@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:44:57 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/05 16:58:37 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:26:32 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <fcntl.h>
 # include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+# include <stdlib.h> //malloc free
+# include <unistd.h> //read
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
