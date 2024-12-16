@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:22:09 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/16 15:34:44 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:26:52 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*get_next_line(int fd)
 	}
 	if (str && *str && bytes_read == 0) //if there is a string and no errror was found
 		return (str);// return string
-	free(str); //If error, free str #2
+	if(str)
+		free(str); //If error, free str #2
 	return (NULL);
 }
