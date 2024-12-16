@@ -98,6 +98,9 @@ void test_reach_end_of_file_with_line(void)
     printf("\n");
 }
 
+//We consider that get_next_line() has an undefined behavior if the file pointed to
+// by the file descriptor changed since the last call whereas read() didn’t reach the
+// end of file.
 void multiple_fd(void)
 {
     printf("### Testing Multiple FDs ####\n");
