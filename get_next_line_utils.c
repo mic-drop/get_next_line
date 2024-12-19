@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/16 16:15:50 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:46:24 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char	*reset_buffer(char *buffer)
 	return (buffer);
 }
 
-int	ft_strlen(const char *src)
+size_t	ft_strlen(const char *src)
 {
-	int	size;
+	size_t	size;
 
 	size = 0;
 	if (src == NULL)
