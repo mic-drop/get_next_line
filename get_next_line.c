@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:22:09 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/19 15:58:43 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:05:18 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];//Estado mantem-se ate ao final da xecuco do programa 
+	static char	buffer[BUFFER_SIZE + 1];//Estado mantem-se ate ao final da xecuco do programa 
 	char		*str;
 	int			bytes_read;
 

@@ -51,10 +51,8 @@ void test_big_len(void)
 
 void test_non_null_terminated_array(void)
 {
-	char str[1];
+	char str[2]; //If its not a ull terminared string, ft_strlen fucks up
 	str[0] = 'a';
-	// char *result = ft_strlen(str) == strlen(str) ? "OK" : "FAIL";
-	// printf("ft_strlen:\t:\t%s\n", result);
 	printf("strlen\t:\t\t%lu\n", strlen(str));
 	printf("ft_strlen:\t:\t%zu\n", ft_strlen(str));
 
@@ -66,7 +64,7 @@ void	test_checknl(void)
 
 	str = "Banana\n";
 	printf("This is strlen\t:%lu\n", strlen(str));
-	printf("This is checkln\t:%d\n", ft_check_nl(str));
+	printf("This is checkln\t:%zu\n", ft_check_nl(str));
 }
 
 void	test_reset_return(void)
@@ -83,8 +81,8 @@ void	test_reset_return(void)
 int	main(void)
 {
 	// test_strlen();
-	test_big_len();
-	// test_non_null_terminated_array();
+	// test_big_len();
+	test_non_null_terminated_array();
 	// test_checknl();
     // test_reset_return();
 }
