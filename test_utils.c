@@ -61,18 +61,18 @@ void test_strlen_null(void)
 
 void test_non_null_terminated_array(void)
 {
-	char str[40]; //If its not a ull terminared string, ft_strlen fucks up
+	char str[41]; //If its not a ull terminared string, ft_strlen fucks up
     int fd = open("41_no_nl", O_RDONLY);
     int i = 0;
     reset_buffer(str);
-    read(fd, str, 39);
+    read(fd, str, 40);
     str[40] = '\0'; //Without this line, it prints a d.
     write(1, &str[40], 1);
     while(str[i] != NULL)
     {
         write(1, &str[i], 1);
         write(1, "\n", 1);
-        // printf("This is str %s\n", str);
+        printf("This is str %s\n", str);
         // printf("This is str[%d]: |%c|\n", i, str[i]);
         i++;
     }
