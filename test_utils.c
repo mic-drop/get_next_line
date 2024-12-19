@@ -65,8 +65,9 @@ void test_non_null_terminated_array(void)
     int fd = open("41_no_nl", O_RDONLY);
     int i = 0;
     reset_buffer(str);
-    read(fd, str, 40);
-    str[40] = '\0';
+    read(fd, str, 39);
+    str[40] = '\0'; //Without this line, it prints a d.
+    write(1, &str[40], 1);
     while(str[i] != NULL)
     {
         write(1, &str[i], 1);
@@ -79,14 +80,14 @@ void test_non_null_terminated_array(void)
     i = 0;
     while(i < 40)
     {
-        printf("This is str[i]: |%c|\n", str[i]);
+        printf("This is str[%d]: |%c|\n", i, str[i]);
         i++;
     }
     printf("\n***** while(str[i]) *************\n");
     i = 0;
     while(str[i])
     {
-        printf("This is str[i]: |%c|\n", str[i]);
+        printf("This is str[%d]: |%c|\n", i, str[i]);
         i++;
     }
     printf("|%s|\n", str);
