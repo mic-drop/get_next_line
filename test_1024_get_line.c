@@ -127,25 +127,28 @@ void    test_non_existing_fd(void)
     free(line);
 
 }
+//Test This without plus 1
+void    test_null_buffer(void){
+	int	fd = open("41_with_nl", O_RDONLY);
+    char	*line = get_next_line(fd);
+    
+    printf("Test\t: |0123456789012345678901234567890123456789|\n");
+    printf("Result\t: |%s|\n", line);
 
+}
 
 
 
 int main(void)
 {
-    test_get_line();
-    test_end_file_no_nl();
-    test_line_no_nl();
-    test_nothing_to_read();
-	test_reach_end_of_file_with_line();
-    // multiple_fd();
+    // test_get_line();
+    // test_end_file_no_nl();
+    // test_line_no_nl();
+    // test_nothing_to_read();
+	// test_reach_end_of_file_with_line();
     // test_non_existing_fd();
-
-    // int fd = open("camoes.txt", O_RDONLY);
-    // char *line = get_next_line(fd);
-    // printf("Result\t: |%s|\n", line);
-    // free(line);
-
+    // multiple_fd();
+    test_null_buffer();
 
     return (0);
 }
