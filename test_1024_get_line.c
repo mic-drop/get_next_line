@@ -133,18 +133,18 @@ void    test_non_existing_fd(void)
 
 int main(void)
 {
-    // test_get_line();
-    // test_end_file_no_nl();
-    // test_line_no_nl();
-    // test_nothing_to_read();
-	// test_reach_end_of_file_with_line();
+    test_get_line();
+    test_end_file_no_nl();
+    test_line_no_nl();
+    test_nothing_to_read();
+	test_reach_end_of_file_with_line();
     // multiple_fd();
     // test_non_existing_fd();
 
-    int fd = open("camoes.txt", O_RDONLY);
-    char *line = get_next_line(fd);
-    printf("Result\t: |%s|\n", line);
-    free(line);
+    // int fd = open("camoes.txt", O_RDONLY);
+    // char *line = get_next_line(fd);
+    // printf("Result\t: |%s|\n", line);
+    // free(line);
 
 
     return (0);

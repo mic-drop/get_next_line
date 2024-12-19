@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:44:57 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/19 15:46:32 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:52:11 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ char	*get_next_line(int fd);
 char	*reset_buffer(char *buffer);
 size_t		ft_strlen(const char *src);
 char	*ft_strjoin(char *s1, char *s2);
-int		ft_check_nl(char *line);
+size_t		ft_check_nl(char *line);
 char	*ft_reset__and_return(char *buffer, char *str, int buff_size);
 #endif

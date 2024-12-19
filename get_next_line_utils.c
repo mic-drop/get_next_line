@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/19 15:46:24 by mserra-p         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:51:53 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (new_str);
 }
 
-int	ft_check_nl(char *line) //gives index before NL
+size_t	ft_check_nl(char *line) //gives index before NL
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < ft_strlen(line) && line[i] != '\n')
@@ -82,17 +82,14 @@ char	*ft_reset__and_return(char *buffer, char *str, int buff_size)
 
 	i = 0;
 	nl_index = ft_check_nl(buffer) + 1; //check_nl gives actual index, we give plus one to start ahead
-	printf("Buffer before before:\n|%s|\n", buffer);
 	while (buffer[i] != '\0')
 	{
 		buffer[i] = buffer[nl_index + i];
 		i++;
 	}
-	printf("Buffer after copy:\n|%s|\n", buffer);
 	while (i < buff_size)
 		buffer[i++] = 0;
 	buffer[i] = '\0';
-	printf("Buffer after reset:\n|%s|\n", buffer);
 	i = 0;
 	end = ft_check_nl(str);
 	while (i < end)
