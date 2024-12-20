@@ -48,55 +48,98 @@ void test_big_len(void)
 	printf("ft_strlen:\t:\t%zu\n", ft_strlen(str));
     free(str); // Free the allocated memory
 }
+
+//This should indicate that if my buffer is not null terminated, that the join will fuck up
+//See line 45 of get_utils, final size will result of the sum between undefined behaviour and size of line
 void test_strlen_null(void)
 {
     char a[1 + 1];
     a[0] = 'a';
-    a[1] = '\0';
+    a[1] = 'b';
+    putchar(strlen(a) + 48);
 	printf("strlen:\t:\t%zu\n", strlen(a));
 	printf("ft_strlen:\t:\t%zu\n", ft_strlen(a));
 
 }
 
-
+//This tests seems to suggest that our BUFFER_SIZE needs a plus one to be null safe
+//Althoug we are not causing a segfault
 void test_non_null_terminated_array(void)
 {
-	char str[41]; //If its not a ull terminared string, ft_strlen fucks up
+	char non_null_buff[40]; //If its not a ull terminared string, ft_strlen fucks up
+    char null_safe_buff[41];
     int fd = open("41_no_nl", O_RDONLY);
+    int fd2 = open("41_no_nl", O_RDONLY);
     int i = 0;
-    reset_buffer(str);
-    read(fd, str, 40);
-    str[40] = '\0'; //Without this line, it prints a d.
-    write(1, &str[40], 1);
-    while(str[i] != NULL)
-    {
-        write(1, &str[i], 1);
-        write(1, "\n", 1);
-        printf("This is str %s\n", str);
-        // printf("This is str[%d]: |%c|\n", i, str[i]);
-        i++;
-    }
-    printf("\n******** i < 40 **********\n");
-    i = 0;
-    while(i < 40)
-    {
-        printf("This is str[%d]: |%c|\n", i, str[i]);
-        i++;
-    }
-    printf("\n***** while(str[i]) *************\n");
-    i = 0;
-    while(str[i])
-    {
-        printf("This is str[%d]: |%c|\n", i, str[i]);
-        i++;
-    }
-    printf("|%s|\n", str);
-    printf("Last char in str |%c|\n", str[39]);
-    printf("Last char in str |%c|\n", str[40]);
-    printf("Last char in str |%c|\n", str[41]);
-	printf("strlen\t:\t\t%lu\n", strlen(str));
-	printf("ft_strlen:\t:\t%zu\n", ft_strlen(str));
+    reset_buffer(non_null_buff);
+    reset_buffer(null_safe_buff);
+    read(fd, non_null_buff, 40);
+    read(fd2, null_safe_buff, 40);
+
+	printf("strlen non null\t:\t\t%lu\n", strlen(non_null_buff));
+	printf("ft_strlen non null:\t:\t%zu\n", ft_strlen(non_null_buff));
+    printf("This is non_null buff: |%s|\n", non_null_buff);
+
+	
+    printf("strlen null safe\t:\t%lu\n", strlen(null_safe_buff));
+	printf("ft_strlen null safe:\t:\t%zu\n", ft_strlen(null_safe_buff));
+    printf("This is null_safe buff: |%s|\n", null_safe_buff);
 }
+
+/* Test Join */
+
+//Sunshine
+//Sunshine is giving seg fault because of free in line 54 of join
+//However, so does vanda. This has to do with the first call being with line allways null
+void	join_sunshine(void)
+{
+	char *expected = "bananamorango";
+	char *banana = "banana";
+	char *morango = "morango";
+
+	char *result = ft_strjoin(banana, morango);
+
+	printf("Strings should be equal : %s\n", strcmp(expected, result) == 0 ? "OKAY" : "FAIL");
+	printf("Expected: %s\n", expected);
+	printf("Got: %s\n", result);
+
+	printf("Strings size should be equal : %s\n", strlen(result) == strlen(expected) ? "OKAY" : "FAIL");
+	printf("Expected: %lu\n", strlen(expected));
+	printf("Got: %lu\n", strlen(result));
+
+}
+
+//Actuall Sunshine
+void join_join_null(void)
+{
+
+	char *expected = "morango";
+	char *banana = NULL;
+	char *morango = "morango";
+
+	char *result = ft_strjoin(banana, morango);
+
+	printf("Strings should be equal : %s\n", strcmp(expected, result) == 0 ? "OKAY" : "FAIL");
+	printf("Expected: %s\n", expected);
+	printf("Got: %s\n", result);
+
+	printf("Strings size should be equal : %s\n", strlen(result) == strlen(expected) ? "OKAY" : "FAIL");
+	printf("Expected: %lu\n", strlen(expected));
+	printf("Got: %lu\n", strlen(result));
+
+	char *kiwi = "kiwi";
+
+	result = ft_strjoin(result, kiwi);
+	printf("Strings should be equal : %s\n", strcmp("morangokiwi", result) == 0 ? "OKAY" : "FAIL");
+	printf("Expected: %s\n", "morangokiwi");
+	printf("Got: %s\n", result);
+
+	printf("Strings size should be equal : %s\n", strlen(result) == strlen("morangokiwi") ? "OKAY" : "FAIL");
+	printf("Expected: %lu\n", strlen("morangokiwi"));
+	printf("Got: %lu\n", strlen(result));
+}
+
+
 
 void	test_checknl(void)
 {
@@ -120,10 +163,17 @@ void	test_reset_return(void)
 
 int	main(void)
 {
+/* Strlen */
 	// test_strlen();
 	// test_big_len();
-	test_non_null_terminated_array();
+    // test_strlen_null();
+	// test_non_null_terminated_array();
+
+/* Str join */
+	// join_sunshine();
+	join_join_null();
+
+/* check_nl */
 	// test_checknl();
     // test_reset_return();
-    // test_strlen_null();
 }
