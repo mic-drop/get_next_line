@@ -49,9 +49,20 @@ void test_big_len(void)
     free(str); // Free the allocated memory
 }
 
+void	strlen_test_null(void)
+{
+	char *str;
+	str = NULL;
+
+	//printf("Strings size should be equal : %s\n", strlen(str) == ft_strlen(str) ? "OKAY" : "FAIL");
+	// printf("Expected: %lu\n", strlen(str));
+	printf("Got: %lu\n", ft_strlen(str));
+	
+}
+
 //This should indicate that if my buffer is not null terminated, that the join will fuck up
 //See line 45 of get_utils, final size will result of the sum between undefined behaviour and size of line
-void test_strlen_null(void)
+void test_strlen_non_null(void)
 {
     char a[1 + 1];
     a[0] = 'a';
@@ -180,13 +191,14 @@ int	main(void)
 /* Strlen */
 	// test_strlen();
 	// test_big_len();
-    // test_strlen_null();
+	strlen_test_null();
+    // test_strlen_non_null();
 	// test_non_null_terminated_array();
 
 /* Str join */
 	// join_sunshine();
 	// join_join_null();
-	join_non_null_str();
+	// join_non_null_str();
 
 /* check_nl */
 	// test_checknl();
