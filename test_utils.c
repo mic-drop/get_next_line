@@ -181,7 +181,7 @@ void	test_reset_return(void)
     char *str;
     int fd = open("aloola.txt", O_RDONLY);
     str = get_next_line(fd);
-    printf("line: |%s|", str);
+    printf("line: |%s|\n", str);
 
 
 }
@@ -191,7 +191,7 @@ int	main(void)
 /* Strlen */
 	// test_strlen();
 	// test_big_len();
-	strlen_test_null();
+	// strlen_test_null();
     // test_strlen_non_null();
 	// test_non_null_terminated_array();
 
@@ -202,5 +202,5 @@ int	main(void)
 
 /* check_nl */
 	// test_checknl();
-    // test_reset_return();
+    test_reset_return();
 }
