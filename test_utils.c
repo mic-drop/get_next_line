@@ -139,6 +139,20 @@ void join_join_null(void)
 	printf("Got: %lu\n", strlen(result));
 }
 
+void	join_non_null_str(void)
+{
+	char non_null[3];//Change this to exact number of bytes read and see the undefined behavioour
+	char *line = NULL;
+	int fd = open("camoes.txt", O_RDONLY);
+	read(fd, non_null, 2);
+	line = ft_strjoin(line, non_null);
+
+	printf("Line is |%s|, with size %lu\n", line, strlen(line));	
+	read(fd, non_null, 2);
+	line = ft_strjoin(line, non_null);
+
+	printf("Line is |%s|, with size %lu\n", line, strlen(line));	
+}
 
 
 void	test_checknl(void)
@@ -171,7 +185,8 @@ int	main(void)
 
 /* Str join */
 	// join_sunshine();
-	join_join_null();
+	// join_join_null();
+	join_non_null_str();
 
 /* check_nl */
 	// test_checknl();
