@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2025/01/02 15:53:20 by mserra-p         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:54:50 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ size_t	ft_strlen(const char *src)
 	size = 0;
 	if (src == NULL)
 		return (0);
-	while (src[size])
+	while (src[size] != '\0'){
 		size++;
+	}
 	return (size);
 }
 
@@ -67,6 +68,8 @@ int	ft_check_nl(char *line) //gives index before NL
 	size_t	i;
 
 	i = 0;
+	if(!line)
+		return (-1);
 	while (i < ft_strlen(line) && line[i] != '\n')
 		i++;
 	if (line[i] != '\n')
