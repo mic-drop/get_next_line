@@ -329,6 +329,43 @@ void	test_reset_static_NULL_ptr(void)
 		printf("Test reset static null pointer: FAIL\n");
 }
 
+/* Test Reset and return */
+
+void	test_reset_return(void)
+{
+	static char buff[8] = "ola\nalo\n";
+	char expected_buff[8] = "alo\n";
+	char *line = ft_strjoin(NULL, buff);
+
+	ft_reset__and_return(buff, line, 8);
+	printf("Testing reset return:\n");
+	printf("\t Buffer content: %s\n", strcmp(buff, expected_buff) == 0 ? "OK" : "FAIL");
+	printf("\t\tExpected buff to be |%s|\n\t\tAnd got |%s|\n", expected_buff, buff);	
+	printf("\t Buffer size: %s\n", strlen(buff) == strlen(expected_buff) ? "OK" : "FAIL");
+	printf("\t\tExpected buffer size to be %lu and got %lu\n\n", strlen(buff), strlen(expected_buff));
+
+	printf("\t Line content: %s\n", strcmp(line, "ola\n") == 0 ? "OK" : "FAIL");
+	printf("\t\tExpected line to be |ola\n|\n\t\tAnd got |%s|\n", line);
+	printf("\t Line size: %s\n", strlen(line) == strlen("ola\n") ? "OK" : "FAIL");
+	printf("\t\tExpected line size to be 4 and got %lu\n", strlen(line));
+
+	line = NULL;
+	line = ft_strjoin(line, buff);
+	ft_reset__and_return(buff, line, 8);
+	reset_buffer(expected_buff);
+	printf("Testing reset return:\n");
+	printf("\t Buffer content: %s\n", strcmp(buff, expected_buff) == 0 ? "OK" : "FAIL");
+	printf("\t\tExpected buff to be |%s|\n\t\tAnd got |%s|\n", expected_buff, buff);	
+	printf("\t Buffer size: %s\n", strlen(buff) == strlen(expected_buff) ? "OK" : "FAIL");
+	printf("\t\tExpected buffer size to be %lu and got %lu\n\n", strlen(buff), strlen(expected_buff));
+
+	printf("\t Line content: %s\n", strcmp(line, "alo\n") == 0 ? "OK" : "FAIL");
+	printf("\t\tExpected line to be |alo\n|\n\t\tAnd got |%s|\n", line);
+	printf("\t Line size: %s\n", strlen(line) == strlen("alo\n") ? "OK" : "FAIL");
+	printf("\t\tExpected line size to be 4 and got %lu\n", strlen(line));
+
+}
+
 int	main(void)
 {
 /* Strlen */
@@ -364,5 +401,5 @@ int	main(void)
 	// test_reset_static_NULL_ptr();
 
 /* Reset and return */
-    // test_reset_return();
+    test_reset_return();
 }
