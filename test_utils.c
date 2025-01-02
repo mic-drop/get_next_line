@@ -16,9 +16,8 @@ void	test_strlen(void)
 
 	str = "Banana";
 	result = ft_strlen(str) == strlen(str) ? "OK" : "FAIL";
-	printf("ft_strlen:\t:\t%s\n", result);
-	printf("strlen\t:\t\t%lu\n", strlen(str));
-	printf("ft_strlen:\t:\t%zu\n", ft_strlen(str));
+	printf("ft_strlen sunshine test:\t:\t%s\n", result);
+	printf("Expected %lu and got %zu\n",strlen(str), ft_strlen(str) );
 }
 
 void test_big_len(void)
@@ -44,8 +43,8 @@ void test_big_len(void)
 
     // Uncomment below to test strlen (it may be slow due to size)
     long unsigned int result = strlen(str);
-    printf("strlen: %lu\n", result);
-	printf("ft_strlen:\t:\t%zu\n", ft_strlen(str));
+    printf("ft_strlen BIG str: %s\n", result == ft_strlen(str) ? "OK" : "FAIL");
+    printf("Expected %lu and got %zu\n", result, ft_strlen(str));
     free(str); // Free the allocated memory
 }
 
@@ -81,7 +80,6 @@ void test_non_null_terminated_array(void)
     char null_safe_buff[41];
     int fd = open("41_no_nl", O_RDONLY);
     int fd2 = open("41_no_nl", O_RDONLY);
-    int i = 0;
     reset_buffer(non_null_buff);
     reset_buffer(null_safe_buff);
     read(fd, non_null_buff, 40);
@@ -165,6 +163,7 @@ void	join_non_null_str(void)
 	printf("Line is |%s|, with size %lu\n", line, strlen(line));	
 }
 
+/*  Test checknl */
 
 void	test_checknl(void)
 {
@@ -172,12 +171,22 @@ void	test_checknl(void)
 
 	str = "Banana\n";
 	printf("This is strlen\t:%lu\n", strlen(str));
-	printf("This is checkln :%zu\n", ft_check_nl(str));
+	printf("This is checkln :%d\n", ft_check_nl(str));
+}
+
+void    check_no_nl(void)
+{
+	char	*str;
+    char    *result;
+	str = "Banana";
+	result = ft_check_nl(str) == -1 ? "OK" : "FAIL";
+	printf("Test check_nl with no nl :%s\n", result);
+    printf("Expected -1 and got %d\n", ft_check_nl(str));
+
 }
 
 void	test_reset_return(void)
 {
-    char *txt = "Ola\nAlo\n";
     char *str;
     int fd = open("aloola.txt", O_RDONLY);
     str = get_next_line(fd);
@@ -189,8 +198,8 @@ void	test_reset_return(void)
 int	main(void)
 {
 /* Strlen */
-	// test_strlen();
-	// test_big_len();
+	test_strlen();
+	test_big_len();
 	// strlen_test_null();
     // test_strlen_non_null();
 	// test_non_null_terminated_array();
@@ -202,5 +211,8 @@ int	main(void)
 
 /* check_nl */
 	// test_checknl();
-    test_reset_return();
+    // check_no_nl();
+    
+/* Reset and return */
+    // test_reset_return();
 }

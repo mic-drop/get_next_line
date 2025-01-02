@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/19 17:36:04 by mserra-p         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:53:20 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (new_str);
 }
 
-size_t	ft_check_nl(char *line) //gives index before NL
+int	ft_check_nl(char *line) //gives index before NL
 {
 	size_t	i;
 

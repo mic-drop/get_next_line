@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:22:09 by mserra-p          #+#    #+#             */
-/*   Updated: 2024/12/19 17:12:18 by mserra-p         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:54:53 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd)
 		str = ft_strjoin(str, buffer); //If no error, line joins whats in buffer #3
 		if (!str)//
 			return (NULL);
-		if (ft_check_nl(buffer) != (unsigned long)-1) //If buffer contains a new line #4
+		if (ft_check_nl(buffer) != -1) //If buffer contains a new line #4
 			return (ft_reset__and_return(buffer, str, BUFFER_SIZE));
 		reset_buffer(buffer); //If buffer contains nl, so does str, so reset buffer #5 
 	}
