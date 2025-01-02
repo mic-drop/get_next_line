@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 //Your function should return the line including the terminating \n character
 void test_get_line(void)
@@ -106,15 +107,16 @@ void multiple_fd(void)
     printf("### Testing Multiple FDs ####\n");
     //Ope, read, close 1st file
 	int	fd = open("camoes.txt", O_RDONLY);
-    char	*line = get_next_line(fd);
-	printf("Test\t: |Os bons vi sempre passar\n|\n");
-	printf("Result\t: |%s|\n", line);
+    char *line;
+    while((line = get_next_line(fd)) != 0){
+        printf("|%s|", line);
+    }
     //Ope, read, close 2nd file
     int fd2 = open("end_file.txt", O_RDONLY);
     line = get_next_line(fd2);
-	printf("Test\t: |aaaaaaaaaaa|\n");
-	printf("Result\t: |%s|\n", line);
-
+    printf("\nTesting second fd: %s\n", strcmp(line, "aaaaaaaaaaa") == 0 ? "OK" : "FAIL");
+	printf("Expected |aaaaaaaaaaa| and got |%s|\n", line);
+    free(line);
     printf("\n");
 }
 
@@ -147,8 +149,8 @@ int main(void)
     // test_nothing_to_read();
 	// test_reach_end_of_file_with_line();
     // test_non_existing_fd();
-    // multiple_fd();
-    test_null_buffer();
+    multiple_fd();
+    // test_null_buffer();
 
     return (0);
 }

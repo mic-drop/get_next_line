@@ -6,7 +6,7 @@
 /*   By: mserra-p <mserra-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:01:47 by mserra-p          #+#    #+#             */
-/*   Updated: 2025/01/02 17:54:50 by mserra-p         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:48:48 by mserra-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*reset_buffer(char *buffer)
 {
 	int	i;
 
+	if(!buffer)
+		return (buffer);
 	i = 0;
 	while (buffer[i])
 		buffer[i++] = 0;

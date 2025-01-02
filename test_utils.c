@@ -270,14 +270,63 @@ void	check_nl_NULL_line(void)
 
 }
 
-void	test_reset_return(void)
+void	test_reset_buffer(void)
 {
-    char *str;
-    int fd = open("aloola.txt", O_RDONLY);
-    str = get_next_line(fd);
-    printf("line: |%s|\n", str);
+	char	buff[3] = "123";
+	reset_buffer(buff);
+	if(buff[0] == '\0' && buff[1] == '\0' && buff[2] == '\0')
+		printf("Test reset buffer: OK\n");
+	else
+		printf("Test reset buffer: FAIL\n");
+}
+void	test_reset_static_buffer(void)
+{
+	static char	buff[3] = "321";
+	reset_buffer(buff);
+	if(buff[0] == '\0' && buff[1] == '\0' && buff[2] == '\0')
+		printf("Test reset static buffer: OK\n");
+	else
+		printf("Test reset static buffer: FAIL\n");
+}
 
+void	test_reset_empty_buffer(void)
+{
+	char	buff[3];
+	putchar(buff[0] + 48);
+	if(buff[0] == '\0' && buff[1] == '\0' && buff[2] == '\0')
+		printf("Test reset empty buffer: OK\n");
+	else
+		printf("Test reset empty buffer: FAIL\n");
+}
+void	test_reset_empty_static_buffer(void)
+{
+	static char	buff[3];
+	reset_buffer(buff);
+	if(buff[0] == '\0' && buff[1] == '\0' && buff[2] == '\0')
+		printf("Test reset empty static buffer: OK\n");
+	else
+		printf("Test reset empty static buffer: FAIL\n");
+}
+//Gives segfault if buffer is NULL
+// We added protection
+void	test_reset_NULL_ptr(void)
+{
+	char	*buff = NULL;
+	reset_buffer(buff);
+	if(!buff)
+		printf("Test reset null pointer: OK\n");
+	else
+		printf("Test reset null pointer: FAIL\n");
+}
 
+void	test_reset_static_NULL_ptr(void)
+{
+	static char	*buff = NULL;
+	reset_buffer(buff);
+	if(!buff)
+		printf("Test reset static null pointer: OK\n");
+	else
+		printf("Test reset static null pointer: FAIL\n");
 }
 
 int	main(void)
@@ -285,7 +334,7 @@ int	main(void)
 /* Strlen */
 	// test_strlen();
 	// test_big_len();
-	strlen_test_null();
+	// strlen_test_null();
     // strlen_test_empty_str();
     // test_strlen_non_null();
     // test_strlen_null_terminated();
@@ -304,8 +353,16 @@ int	main(void)
 	// test_checknl();
     // check_no_nl();
 	// check_nl_empty_line();
-	check_nl_NULL_line();
-    
+	// check_nl_NULL_line();
+
+/*  test_reset_buffer */
+	// test_reset_buffer();
+	// test_reset_static_buffer();
+	// test_reset_empty_buffer();
+	// test_reset_empty_static_buffer();
+	// test_reset_NULL_ptr();
+	// test_reset_static_NULL_ptr();
+
 /* Reset and return */
     // test_reset_return();
 }
