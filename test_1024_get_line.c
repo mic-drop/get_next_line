@@ -53,6 +53,7 @@ void test_end_file_no_nl(void)
 
 void test_line_no_nl(void)
 {
+    printf("### Testing Line NO NL - NO NL ####\n");
     //
     int fd = open("line_no_nl.txt", O_RDONLY);
     char *line = get_next_line(fd);
@@ -61,7 +62,7 @@ void test_line_no_nl(void)
     free(line);
 
    line = get_next_line(open("41_no_nl", O_RDONLY));
-    printf("Test\t: |01234567890123456789012345678901234567890|\n");
+    printf("Test\t: |01234567890123456789012345678901234567898|\n");
     printf("Result\t: |%s|\n", line);
     
     free(line);
@@ -110,6 +111,7 @@ void multiple_fd(void)
     char *line;
     while((line = get_next_line(fd)) != 0){
         printf("|%s|", line);
+        free(line); 
     }
     //Ope, read, close 2nd file
     int fd2 = open("end_file.txt", O_RDONLY);
@@ -134,8 +136,9 @@ void    test_null_buffer(void){
 	int	fd = open("41_with_nl", O_RDONLY);
     char	*line = get_next_line(fd);
     
-    printf("Test\t: |0123456789012345678901234567890123456789|\n");
+    printf("Test\t: |0123456789012345678901234567890123456789\n|\n");
     printf("Result\t: |%s|\n", line);
+    free(line);
 
 }
 
@@ -143,14 +146,14 @@ void    test_null_buffer(void){
 
 int main(void)
 {
-    // test_get_line();
-    // test_end_file_no_nl();
-    // test_line_no_nl();
-    // test_nothing_to_read();
-	// test_reach_end_of_file_with_line();
-    // test_non_existing_fd();
+    test_get_line();
+    test_end_file_no_nl();
+    test_line_no_nl();
+    test_nothing_to_read();
+	test_reach_end_of_file_with_line();
+    test_non_existing_fd();
     multiple_fd();
-    // test_null_buffer();
+    test_null_buffer();
 
     return (0);
 }
